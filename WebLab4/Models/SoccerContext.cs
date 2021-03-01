@@ -6,9 +6,9 @@ using System.Web;
 
 namespace WebLab4.Models
 {
-    public class BookContext : DbContext
+    public class SoccerContext : DbContext
     {
-        public DbSet<Book> Books { get; set; }
-        public DbSet<Purchase> Purchases { get; set; }
+        public DbSet<Player> Players { get; set; }
+        public DbSet<Team> Teams { get; set; }
     }
 }

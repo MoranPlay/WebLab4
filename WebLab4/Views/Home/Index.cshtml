@@ -1,23 +1,53 @@
-﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@model IEnumerable<WebLab4.Models.Player>
+
+@{
+    ViewBag.Title = "Каталог игроков";
 }
-<div>
-    <h3>Распродажа книг</h3>
-    <table>
-        <tr class="header">
-            <td><p>Название книги</p></td>
-            <td><p>Автор</p></td>
-            <td><p>Цена</p></td>
-            <td></td>
+
+<h2>Каталог игроков</h2>
+<p>
+    @Html.ActionLink("Добавить игрока", "Create")
+</p>
+<table>
+    <tr>
+        <th>Имя игрока</th>
+        <th>Возраст</th>
+        <th>Позиция на поле</th>
+        <th>Команда</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Team.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+            </td>
         </tr>
-        @foreach (var b in ViewBag.Books)
-        {
-            <tr>
-                <td><p>@b.Name</p></td>
-                <td><p>@b.Author</p></td>
-                <td><p>@b.Price</p></td>
-                <td><p><a href="/Home/Buy/@b.Id">Купить</a></p></td>
-            </tr>
-        }
-    </table>
-</div>
+    }
+</table>
+<p>
+    @Html.ActionLink("Каталог команды Реал Мадрид", "TeamDetails", new { id = 1 })
+</p>
+<p>
+    @Html.ActionLink("Каталог команды Барселона", "TeamDetails", new { id = 2 })
+</p>
+<p>
+    @Html.ActionLink("Каталог команды Бавария", "TeamDetails", new { id = 3 })
+</p>
+<p>
+    @Html.ActionLink("Каталог команды Боруссия", "TeamDetails", new { id = 4 })
+</p>
